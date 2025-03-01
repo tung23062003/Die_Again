@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField] private Joystick joystick;
+    [SerializeField] private Button jumpBtn;
 
     Vector2 moveInputVector = Vector2.zero;
     PlayerMovement playerMovement;
@@ -14,7 +17,18 @@ public class PlayerInput : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         playerMovement = GetComponent<PlayerMovement>();
+
+#if UNITY_ANDROID || UNITY_IOS
+        jumpBtn.onClick.AddListener(() => { playerController.Jump(); });
+#endif
     }
+
+#if UNITY_ANDROID || UNITY_IOS
+    private void OnDestroy()
+    {
+        jumpBtn.onClick.RemoveAllListeners();
+    }
+#endif
 
     // Update is called once per frame
     void Update()
@@ -29,8 +43,8 @@ public class PlayerInput : MonoBehaviour
             playerController.Jump();
 #elif UNITY_ANDROID || UNITY_IOS
         //Move input
-        moveInputVector.x = floatingJoystick.Horizontal;
-        moveInputVector.y = floatingJoystick.Vertical;
+        moveInputVector.x = joystick.Horizontal;
+        moveInputVector.y = joystick.Vertical;
 #endif
         playerMovement.SetMoveInputVector(moveInputVector);
     }

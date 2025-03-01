@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelStateUI : MonoBehaviour
 {
     [SerializeField] private Button homeBtn;
+    [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private GameObject lostLevelPanel;
     private Animator animator;
 
@@ -17,6 +19,7 @@ public class LevelStateUI : MonoBehaviour
 
         GameEvent.OnStartLevel.AddListener(OnStartLevel);
         GameEvent.OnEndLevel.AddListener(OnEndLevel);
+        GameEvent.OnLoadDone.AddListener(OnLoadDone);
     }
 
     private void OnDestroy()
@@ -25,6 +28,12 @@ public class LevelStateUI : MonoBehaviour
 
         GameEvent.OnStartLevel.RemoveAllListeners();
         GameEvent.OnEndLevel.RemoveAllListeners();
+        GameEvent.OnLoadDone.RemoveAllListeners();
+    }
+
+    private void OnLoadDone(int level)
+    {
+        levelText.text = "Level " + level;
     }
 
     private void HomeBtnHandle()

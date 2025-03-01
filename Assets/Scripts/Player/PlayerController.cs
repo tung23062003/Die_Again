@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, ICharacter
 {
     [Header("Character Controller Settings")]
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 200;
     [SerializeField] private float jumpForce;
     [SerializeField] private float rotationSpeed = 30;
 

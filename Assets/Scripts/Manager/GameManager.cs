@@ -54,9 +54,12 @@ public class GameManager : PersistantSingleton<GameManager>
         else if (isRestartLevel)
             await ObjectPool.Instance.DespawnAll();
 
+        GameEvent.OnLoadDone?.Invoke(loadingLevel);
+
         await Spawner.Instance.AddMap(levelData.GetMapByLevel(loadingLevel), mapPosition, Quaternion.identity);
         await Spawner.Instance.AddPlayer(Vector3.zero, Quaternion.identity);
         //Spawner.Instance.AddMap(levelData.GetMapByLevel(loadingLevel));
+
     }
 
     public void LoadScene(string sceneName, Action onComplete = null)
