@@ -26,15 +26,15 @@ public class GameManager : PersistantSingleton<GameManager>
 
     private void OnEndLevel(EndLevelType endLevelType)
     {
-        if (endLevelType == EndLevelType.Win)
-        {
-            unlockedLevel = PlayerPrefs.GetInt("Level", 1);
-            if(loadingLevel >= unlockedLevel)
-            {
-                unlockedLevel += 1;
-                PlayerPrefs.SetInt("Level", loadingLevel + 1);
-            }
-        }
+        //if (endLevelType == EndLevelType.Win)
+        //{
+        //    unlockedLevel = PlayerPrefs.GetInt("Level", 1);
+        //    if(loadingLevel >= unlockedLevel)
+        //    {
+        //        unlockedLevel += 1;
+        //        PlayerPrefs.SetInt("Level", loadingLevel + 1);
+        //    }
+        //}
     }
 
     public async void LoadLevel(bool isSpawnNextLevel = false, bool isRestartLevel = false)
@@ -48,7 +48,12 @@ public class GameManager : PersistantSingleton<GameManager>
                 LoadScene(GameConstants.MENU_SCENE, () => { DestroySingleton(); });
                 return;
             }
-            loadingLevel += 1;
+            if (loadingLevel >= unlockedLevel)
+            {
+                unlockedLevel += 1;
+                loadingLevel += 1;
+                PlayerPrefs.SetInt("Level", loadingLevel);
+            }
             await ObjectPool.Instance.DespawnAll();
         }
         else if (isRestartLevel)
