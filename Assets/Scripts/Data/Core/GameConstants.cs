@@ -7,6 +7,7 @@ public static class GameConstants
 {
     public static string win_area = "WinArea";
     public static string dead_zone = "Deadzone";
+    public static string moving_platform = "MovingPlatformTrigger";
 
     public static string MAIN_SCENE = "MainScene";
     public static string MENU_SCENE = "MenuScene";

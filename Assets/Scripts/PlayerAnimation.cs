@@ -11,6 +11,13 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         playerController = GetComponent<PlayerController>();
+
+        GameEvent.OnEndLevel.AddListener(OnPlayerDie);
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.OnEndLevel.RemoveAllListeners();
     }
 
     private void Update()
@@ -22,5 +29,11 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetBool(Animator.StringToHash("isGrounded"), playerController.isGrounded);
         animator.SetBool(Animator.StringToHash("isMoving"), new Vector3(playerController.rb.velocity.x, 0, playerController.rb.velocity.z).magnitude >= 0.1f && playerController.isGrounded);
+    }
+
+    private void OnPlayerDie(EndLevelType endLevelType)
+    {
+        if(endLevelType == EndLevelType.Lose)
+            animator.SetTrigger(Animator.StringToHash("isDie"));
     }
 }

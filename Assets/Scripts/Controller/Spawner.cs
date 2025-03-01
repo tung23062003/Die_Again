@@ -26,6 +26,8 @@ public class Spawner : Singleton<Spawner>
         player.transform.SetLocalPositionAndRotation(postion, rotation);
         player.transform.SetParent(parent);
         player.SetActive(true);
+        player.GetComponent<Rigidbody>().velocity = Vector2.zero;
+
         GameEvent.OnAddPlayer?.Invoke(player.transform);
         onComplete?.Invoke();
         await Task.Yield();

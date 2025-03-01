@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WinArea
   - Deadzone
+  - MovingPlatformTrigger
   layers:
   - Default
   - TransparentFX

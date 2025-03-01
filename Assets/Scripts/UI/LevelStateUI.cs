@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelStateUI : MonoBehaviour
 {
+    [SerializeField] private Button homeBtn;
     [SerializeField] private GameObject lostLevelPanel;
     private Animator animator;
 
@@ -11,23 +13,23 @@ public class LevelStateUI : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
 
-        GameEvent.OnStartLevel.AddListener(OnStartLevel);
-        //GameEvent.OnWinLevel.AddListener(OnEndLevel);
-        //GameEvent.OnLoseLevel.AddListener(OnEndLevel);
+        homeBtn.onClick.AddListener(HomeBtnHandle);
 
+        GameEvent.OnStartLevel.AddListener(OnStartLevel);
         GameEvent.OnEndLevel.AddListener(OnEndLevel);
     }
 
     private void OnDestroy()
     {
+        homeBtn.onClick.RemoveAllListeners();
+
         GameEvent.OnStartLevel.RemoveAllListeners();
-        //GameEvent.OnWinLevel.RemoveAllListeners();
-        //GameEvent.OnLoseLevel.RemoveAllListeners();
+        GameEvent.OnEndLevel.RemoveAllListeners();
     }
 
-    private void Start()
+    private void HomeBtnHandle()
     {
-        
+        GameManager.Instance.LoadScene(GameConstants.MENU_SCENE, () => { GameManager.Instance.DestroySingleton(); });
     }
 
     private void OnStartLevel()

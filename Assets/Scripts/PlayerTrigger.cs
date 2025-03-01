@@ -18,5 +18,13 @@ public class PlayerTrigger : MonoBehaviour
             Debug.Log("Lose");
             //gameObject.SetActive(false);
         }
+        else if (other.CompareTag(GameConstants.moving_platform))
+        {
+            if(other.transform.parent.TryGetComponent(out MovingPlatform movingPlatform))
+            {
+                movingPlatform.MoveToPosition();
+                other.GetComponent<BoxCollider>().isTrigger = false;
+            }
+        }
     }
 }

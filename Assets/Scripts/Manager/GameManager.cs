@@ -10,7 +10,7 @@ public class GameManager : PersistantSingleton<GameManager>
     [SerializeField] private Vector3 mapPosition = new Vector3(0, -2, 0);
     [HideInInspector] public int loadingLevel;
 
-    [HideInInspector] public int unlockedLevel;
+    public int unlockedLevel;
     protected override void Awake()
     {
         base.Awake();
@@ -26,10 +26,14 @@ public class GameManager : PersistantSingleton<GameManager>
 
     private void OnEndLevel(EndLevelType endLevelType)
     {
-        if(endLevelType == EndLevelType.Win)
+        if (endLevelType == EndLevelType.Win)
         {
+            unlockedLevel = PlayerPrefs.GetInt("Level", 1);
             if(loadingLevel >= unlockedLevel)
+            {
+                unlockedLevel += 1;
                 PlayerPrefs.SetInt("Level", loadingLevel + 1);
+            }
         }
     }
 
@@ -41,7 +45,7 @@ public class GameManager : PersistantSingleton<GameManager>
         {
             if (IsMaxLevel())
             {
-                LoadScene(GameConstants.MENU_SCENE);
+                LoadScene(GameConstants.MENU_SCENE, () => { DestroySingleton(); });
                 return;
             }
             loadingLevel += 1;
@@ -58,10 +62,11 @@ public class GameManager : PersistantSingleton<GameManager>
     public void LoadScene(string sceneName, Action onComplete = null)
     {
         SceneManager.LoadSceneAsync(sceneName);
-        onComplete?.Invoke();
 
-        if(sceneName == GameConstants.MAIN_SCENE)
+        if (sceneName == GameConstants.MAIN_SCENE)
             StartCoroutine(StartLoadLevel());
+
+        onComplete?.Invoke();
     }
 
     public IEnumerator StartLoadLevel()
