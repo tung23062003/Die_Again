@@ -9,7 +9,7 @@ public class LoseLevelUI : MonoBehaviour
     [SerializeField] private Button skipLevelBtn;
 
     [SerializeField] private GameObject lostLevelUI;
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
 
     private void Awake()
     {
@@ -28,14 +28,14 @@ public class LoseLevelUI : MonoBehaviour
 
     private void RetryBtnHandle()
     {
-        animator.SetTrigger(Animator.StringToHash("Appear"));
-        StartCoroutine(WaitForSeconds_Retry(1.5f));
+        //animator.SetTrigger(Animator.StringToHash("Appear"));
+        StartCoroutine(WaitForSeconds_Retry(0.5f));
     }
 
     private void SkipLevelBtnHandle()
     {
-        animator.SetTrigger(Animator.StringToHash("Appear"));
-        StartCoroutine(WaitForSeconds_Skip(1.5f));
+        //animator.SetTrigger(Animator.StringToHash("Appear"));
+        StartCoroutine(WaitForSeconds_Skip(0.5f));
     }
 
     private IEnumerator WaitForSeconds_Retry(float time)

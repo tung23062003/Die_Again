@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour, ICharacter
         if (isGrounded)
         {
             rb.AddForce(rb.velocity.x, jumpForce, rb.velocity.z, ForceMode.Impulse);
+            SFXManager.Instance.PlaySFX("Jump");
         }
     }
 
