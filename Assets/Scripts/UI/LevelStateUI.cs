@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelUI : MonoBehaviour
+public class LevelStateUI : MonoBehaviour
 {
     [SerializeField] private GameObject lostLevelPanel;
     private Animator animator;
@@ -48,7 +48,7 @@ public class LevelUI : MonoBehaviour
     private IEnumerator WaitForSeconds_Win(float time)
     {
         yield return new WaitForSeconds(time);
-        GameManager.Instance.LoadNextLevel();
+        GameManager.Instance.LoadLevel(isSpawnNextLevel: true);
     }
 
     private IEnumerator WaitForSeconds_Lose(float time)

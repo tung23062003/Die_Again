@@ -1,22 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Spawner : Singleton<Spawner>
 {
     [SerializeField] private GameObject playerPrefab;
-    
-    public void AddMap(GameObject map, Action onComplete = null)
+
+    private GameObject map;
+
+    public async Task AddMap(GameObject map, Vector3 postion, Quaternion rotation, Transform parent = null, Action onComplete = null)
     {
-        Instantiate(map);
+        var prefab = ObjectPool.Instance.Spawn(map);
+        prefab.transform.SetLocalPositionAndRotation(postion, rotation);
+        prefab.transform.SetParent(parent);
+        prefab.SetActive(true);
         onComplete?.Invoke();
+        await Task.Yield();
     }
 
-    public void AddPlayer(Vector3 postion, Quaternion rotation, Transform parent = null, Action onComplete = null)
+    public async Task AddPlayer(Vector3 postion, Quaternion rotation, Transform parent = null, Action onComplete = null)
     {
-        var player = Instantiate(playerPrefab, postion, rotation, parent);
+        var player = ObjectPool.Instance.Spawn(playerPrefab);
+        player.transform.SetLocalPositionAndRotation(postion, rotation);
+        player.transform.SetParent(parent);
+        player.SetActive(true);
         GameEvent.OnAddPlayer?.Invoke(player.transform);
         onComplete?.Invoke();
+        await Task.Yield();
     }
+
+    //public void RemoveMap()
+    //{
+    //    if(map != null)
+    //        map.SetActive(false);
+    //}
 }

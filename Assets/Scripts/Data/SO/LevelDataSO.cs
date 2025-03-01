@@ -11,6 +11,11 @@ public class LevelDataSO : ScriptableObject
     {
         return levels.Find(item => item.level == level).map;
     }
+
+    public int GetLevelQuantity()
+    {
+        return levels.Count;
+    }
 }
 
 [System.Serializable]
