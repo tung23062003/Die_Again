@@ -65,13 +65,4 @@ public class PlayerController : MonoBehaviour, ICharacter
         Gizmos.DrawRay(groundCheckPoint.position, -1 * groundCheckDistance * Vector3.up);
         Gizmos.color = Color.red;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameConstants.win_area))
-        {
-            GameEvent.OnWinLevel?.Invoke();
-            Debug.Log("Win");
-        }
-    }
 }

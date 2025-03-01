@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &50625716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 177531514}
+  - component: {fileID: 177531515}
   m_Layer: 5
   m_Name: LoseLevelUI
   m_TagString: Untagged
@@ -204,6 +205,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &177531515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177531513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ba6dc7611562647b0799090b1f1dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lostLevelUI: {fileID: 2072227528}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +708,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 228}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!1 &903200334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903200336}
+  - component: {fileID: 903200335}
+  m_Layer: 0
+  m_Name: DeadZone
+  m_TagString: Deadzone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &903200335
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903200334}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 47.687485, y: 1, z: 28.848047}
+  m_Center: {x: 5.6749306, y: 0, z: 5.8977003}
+--- !u!4 &903200336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903200334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9719962, y: -5.84, z: -1.0572963}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &948169384
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +772,7 @@ GameObject:
   - component: {fileID: 948169385}
   - component: {fileID: 948169386}
   m_Layer: 5
-  m_Name: WinLevelUI
+  m_Name: LevelUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,6 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d20a49ea030b5346bd1d10533f944cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lostLevelPanel: {fileID: 2072227528}
 --- !u!1 &987567624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,6 +1442,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 802e2e86986e1e545a6e2cf2d5776b52, type: 3}
+--- !u!1001 &1566371240
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2677334470647724717, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_Name
+      value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677334470647724717, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153921963106688323, guid: 7986b10b65b28cd4aae41f93b0279898,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7986b10b65b28cd4aae41f93b0279898, type: 3}
 --- !u!1 &1653387617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,3 +2096,5 @@ SceneRoots:
   - {fileID: 1506685618}
   - {fileID: 1062437906}
   - {fileID: 50625717}
+  - {fileID: 1566371240}
+  - {fileID: 903200336}
